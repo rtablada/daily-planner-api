@@ -4,14 +4,14 @@ const Lucid = use('Lucid');
 const guarded = require('./guard-mixin');
 
 class User extends Lucid {
-  apiTokens() {
-    return this.hasMany('App/Model/Token');
-  }
-
   static get fillable() {
     return [
+      'login',
+      'github_id',
       'email',
-      'password',
+      'name',
+      'avatar_url',
+      'access_token',
     ];
   }
 }
