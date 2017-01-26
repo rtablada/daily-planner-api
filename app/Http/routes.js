@@ -27,6 +27,10 @@ Route.resource('/api/cohorts', 'CohortController')
   .except(['create', 'edit'])
   .middleware('auth');
 
+Route.resource('/api/students', 'StudentController')
+  .except(['create', 'edit'])
+  .middleware('auth');
+
 Route.resource('/api/users', 'UserController')
   .only(['index', 'show'])
   .middleware('auth');
