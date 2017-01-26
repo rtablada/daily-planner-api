@@ -20,7 +20,7 @@ const Route = use('Route');
 Route.post('/api/users', 'UserController.store');
 
 Route.resource('/api/users', 'UserController')
-  .only(['index', 'show', 'update', 'destroy'])
+  .only(['index', 'show'])
   .middleware('auth');
 
 Route.post('/api/token-auth', 'SessionController.store');
