@@ -12,6 +12,10 @@ Route.resource('/api/invites', 'InviteController')
   .except(['create', 'edit'])
   .middleware('auth');
 
+Route.resource('/api/instructors', 'InstructorController')
+  .except(['create', 'edit'])
+  .middleware('auth');
+
 Route.resource('/api/cohorts', 'CohortController')
   .except(['create', 'edit'])
   .middleware('auth');

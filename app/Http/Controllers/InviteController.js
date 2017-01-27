@@ -1,7 +1,7 @@
 'use strict';
 
 const Invite = use('App/Model/Invite');
-const attributes = ['login'];
+const attributes = ['login', 'instructor'];
 
 class InviteController {
 

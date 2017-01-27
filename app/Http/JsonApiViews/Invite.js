@@ -2,7 +2,7 @@ const JsonApiView = require('adonis-jsonapi/src/JsonApiView');
 
 class Invite extends JsonApiView {
   get attributes() {
-    return ['login'];
+    return ['login', 'instructor'];
   }
 
   cohort() {

@@ -8,6 +8,7 @@ class InviteSchema extends Schema {
     this.create('invites', (table) => {
       table.increments();
       table.integer('cohort_id').references('cohorts.id');
+      table.boolean('instructor');
       table.string('login');
       table.timestamps();
     });

@@ -6,13 +6,12 @@ const Env = use('Env');
 
 const User = use('App/Model/User');
 const Invite = use('App/Model/Invite');
-const Student = use('App/Model/Student');
+
 const clientId = Env.get('GITHUB_ID');
 const secret = Env.get('GITHUB_SECRET');
 const tokenUrl = `https://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${secret}`;
 
 class NotOkException extends NE.LogicalException {}
-class NoInviteException extends NE.LogicalException {}
 
 const basicResponse = (r) => {
   if (r.ok) {
@@ -71,12 +70,7 @@ class SessionController {
 
         response.json({ token });
 
-        yield Student.create({
-          user_id: invitedUser.id,
-          cohort_id: invite.cohort_id,
-        });
-
-        return yield invite.delete();
+        yield invite.convert(user);
       }
 
       return response.status(401).json({
