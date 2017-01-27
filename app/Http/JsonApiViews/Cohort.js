@@ -8,21 +8,28 @@ class Cohort extends JsonApiView {
   invites() {
     return this.hasMany('App/Http/JsonApiViews/Invite', {
       included: true,
-      excludeRelation: 'cohort'
+      excludeRelation: 'cohort',
+    });
+  }
+
+  lessons() {
+    return this.hasMany('App/Http/JsonApiViews/Lesson', {
+      included: true,
+      excludeRelation: 'cohort',
     });
   }
 
   students() {
     return this.hasMany('App/Http/JsonApiViews/Student', {
       included: true,
-      excludeRelation: 'cohort'
+      excludeRelation: 'cohort',
     });
   }
 
   instructors() {
     return this.hasMany('App/Http/JsonApiViews/Instructor', {
       included: true,
-      excludeRelation: 'cohort'
+      excludeRelation: 'cohort',
     });
   }
 

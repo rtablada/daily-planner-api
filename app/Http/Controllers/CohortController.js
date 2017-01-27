@@ -7,7 +7,7 @@ const attributes = ['name', 'start-date', 'campus'];
 class CohortController {
 
   * index(request, response) {
-    const cohorts = yield Cohort.with('invites', 'students.user', 'instructors.user').fetch();
+    const cohorts = yield Cohort.with('lessons', 'invites', 'students.user', 'instructors.user').fetch();
 
     response.jsonApi('Cohort', cohorts);
   }
@@ -30,7 +30,7 @@ class CohortController {
 
   * show(request, response) {
     const id = request.param('id');
-    const cohort = yield Cohort.with('invites', 'students.user', 'instructors.user').where({ id }).firstOrFail();
+    const cohort = yield Cohort.with('lessons', 'invites', 'students.user', 'instructors.user').where({ id }).firstOrFail();
 
     response.jsonApi('Cohort', cohort);
   }
@@ -43,7 +43,7 @@ class CohortController {
     const foreignKeys = {
     };
 
-    const cohort = yield Cohort.with('invites', 'students.user', 'instructors.user').where({ id }).firstOrFail();
+    const cohort = yield Cohort.with('lessons', 'invites', 'students.user', 'instructors.user').where({ id }).firstOrFail();
     cohort.fill(Object.assign({}, input, foreignKeys));
     yield cohort.save();
 

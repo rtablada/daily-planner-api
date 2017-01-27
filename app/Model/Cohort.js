@@ -11,6 +11,10 @@ class Cohort extends Lucid {
     return this.hasMany('App/Model/Student', 'id', 'cohort_id');
   }
 
+  lessons() {
+    return this.hasMany('App/Model/Lesson', 'id', 'cohort_id');
+  }
+
   instructors() {
     return this.hasMany('App/Model/Instructor', 'id', 'cohort_id');
   }
