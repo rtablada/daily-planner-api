@@ -17,6 +17,14 @@ class UserController {
     response.jsonApi('User', user);
   }
 
+  * current(request, response) {
+    const user = request.currentUser;
+
+    yield user.related('instructors.cohort', 'students.cohort').load();
+
+    response.jsonApi('User', user);
+  }
+
 }
 
 module.exports = UserController;

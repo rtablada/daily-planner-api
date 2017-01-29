@@ -14,6 +14,14 @@ class User extends Lucid {
       'access_token',
     ];
   }
+
+  instructors() {
+    return this.hasMany('App/Model/Instructor');
+  }
+
+  students() {
+    return this.hasMany('App/Model/Student');
+  }
 }
 
 guarded(User);

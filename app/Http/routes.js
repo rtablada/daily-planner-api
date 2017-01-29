@@ -2,7 +2,8 @@
 
 const Route = use('Route');
 
-Route.post('/api/users', 'UserController.store');
+Route.get('/api/users/current', 'UserController.current')
+  .middleware('auth');
 
 Route.resource('/api/lessons', 'LessonController')
   .except(['create', 'edit'])
