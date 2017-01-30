@@ -32,6 +32,14 @@ class User extends Lucid {
       throw new NotAuthorizedException('You are not an instructor for the designatd cohort');
     }
   }
+
+  instructors() {
+    return this.hasMany('App/Model/Instructor');
+  }
+
+  students() {
+    return this.hasMany('App/Model/Student');
+  }
 }
 
 guarded(User);
