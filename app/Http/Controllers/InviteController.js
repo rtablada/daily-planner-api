@@ -16,6 +16,9 @@ class InviteController {
     const foreignKeys = {
       cohort_id: request.jsonApi.getRelationId('cohort'),
     };
+
+    yield request.currentUser.assertIsInstructorForCohort(request.jsonApi.getRelationId('cohort'));
+
     const invite = yield Invite.create(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('Invite', invite);
@@ -36,6 +39,8 @@ class InviteController {
     const foreignKeys = {
       cohort_id: request.jsonApi.getRelationId('cohort'),
     };
+
+    yield request.currentUser.assertIsInstructorForCohort(request.jsonApi.getRelationId('cohort'));
 
     const invite = yield Invite.with('cohort').where({ id }).firstOrFail();
     invite.fill(Object.assign({}, input, foreignKeys));

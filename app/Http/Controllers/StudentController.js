@@ -16,6 +16,9 @@ class StudentController {
       cohort_id: request.jsonApi.getRelationId('cohort'),
       user_id: request.jsonApi.getRelationId('user'),
     };
+
+    yield request.currentUser.assertIsInstructorForCohort(request.jsonApi.getRelationId('cohort'));
+
     const student = yield Student.create(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('Student', student);
@@ -37,6 +40,8 @@ class StudentController {
       cohort_id: request.jsonApi.getRelationId('cohort'),
       user_id: request.jsonApi.getRelationId('user'),
     };
+
+    yield request.currentUser.assertIsInstructorForCohort(request.jsonApi.getRelationId('cohort'));
 
     const student = yield Student.with('cohort', 'user').where({ id }).firstOrFail();
     student.fill(Object.assign({}, input, foreignKeys));

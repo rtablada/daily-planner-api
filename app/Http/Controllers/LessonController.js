@@ -16,6 +16,9 @@ class LessonController {
     const foreignKeys = {
       cohort_id: request.jsonApi.getRelationId('cohort'),
     };
+
+    yield request.currentUser.assertIsInstructorForCohort(request.jsonApi.getRelationId('cohort'));
+
     const lesson = yield Lesson.create(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('Lesson', lesson);
@@ -36,6 +39,8 @@ class LessonController {
     const foreignKeys = {
       cohort_id: request.jsonApi.getRelationId('cohort'),
     };
+
+    yield request.currentUser.assertIsInstructorForCohort(request.jsonApi.getRelationId('cohort'));
 
     const lesson = yield Lesson.with('cohort').where({ id }).firstOrFail();
     lesson.fill(Object.assign({}, input, foreignKeys));
