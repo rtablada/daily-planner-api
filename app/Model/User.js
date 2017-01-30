@@ -1,6 +1,6 @@
 'use strict';
 
-const NotAuthorizedException = use('App/Http/Exceptions');
+const NotAuthorizedException = use('App/Http/Exceptions/NotAuthorized');
 const Lucid = use('Lucid');
 
 const Instructor = use('App/Model/Instructor');
