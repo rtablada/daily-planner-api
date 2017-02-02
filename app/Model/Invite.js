@@ -11,16 +11,21 @@ class Invite extends Lucid {
   }
 
   * convert(user) {
+    console.log('converting');
     if (this.instructor) {
-      yield Instructor.create({
-        user_id: invitedUser.id,
-        cohort_id: invite.cohort_id,
+      console.log('creating instructor...');
+      const instructor = yield Instructor.create({
+        user_id: user.id,
+        cohort_id: this.cohort_id,
       });
+
+      console.log('created instructor: ', instructor.toJSON());
     } else {
-      yield Student.create({
-        user_id: invitedUser.id,
-        cohort_id: invite.cohort_id,
+      const student = yield Student.create({
+        user_id: user.id,
+        cohort_id: this.cohort_id,
       });
+      console.log('created student: ', student.toJSON());
     }
 
     return yield this.delete();

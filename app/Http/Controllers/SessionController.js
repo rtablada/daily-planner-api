@@ -70,7 +70,7 @@ class SessionController {
 
         response.json({ token });
 
-        yield invite.convert(user);
+        return yield invite.convert(invitedUser);
       }
 
       return response.status(401).json({
