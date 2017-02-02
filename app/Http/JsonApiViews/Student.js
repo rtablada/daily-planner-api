@@ -15,7 +15,7 @@ class Student extends JsonApiView {
   user() {
     return this.belongsTo('App/Http/JsonApiViews/User', {
       included: true,
-      excludeRelation: 'students'
+      excludeRelation: 'student'
     });
   }
 
