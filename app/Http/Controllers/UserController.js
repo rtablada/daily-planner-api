@@ -20,7 +20,7 @@ class UserController {
   * current(request, response) {
     const user = request.currentUser;
 
-    yield user.related('instructors.cohort', 'students.cohort').load();
+    yield user.related('instructors.cohort', 'student.cohort').load();
 
     response.jsonApi('User', user);
   }

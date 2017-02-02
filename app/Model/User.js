@@ -37,8 +37,8 @@ class User extends Lucid {
     return this.hasMany('App/Model/Instructor');
   }
 
-  students() {
-    return this.hasMany('App/Model/Student');
+  student() {
+    return this.hasOne('App/Model/Student');
   }
 }
 
