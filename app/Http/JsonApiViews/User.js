@@ -7,7 +7,22 @@ class User extends JsonApiView {
       'email',
       'name',
       'avatar_url',
+      'is_admin'
     ];
+  }
+
+  instructors() {
+    return this.hasMany('App/Http/JsonApiViews/Instructor', {
+      included: true,
+      excludeRelation: 'user'
+    });
+  }
+
+  students() {
+    return this.belongsTo('App/Http/JsonApiViews/Student', {
+      included: true,
+      excludeRelation: 'user'
+    });
   }
 
 }
